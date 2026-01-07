@@ -401,8 +401,6 @@ class EuropeanDCATAPProfile(RDFProfile):
             else:
                 contact_details = BNode()
 
-            g.add((contact_details, RDF.type, VCARD.Organization))
-             #g.add((dataset_ref, DCAT.contactPoint, contact_details))
             # get orga info
             org_show = logic.get_action('organization_show')
             org_id = dataset_dict.get('owner_org')
@@ -421,8 +419,10 @@ class EuropeanDCATAPProfile(RDFProfile):
              except Exception as err:
                 log.warning('Cannot get org for %s: %s', org_id, err, exc_info=err)
 
+            # Add contact details only if there's actual data to add
+            has_contact_data = False
+            
             if not org_dict.get('name'):
-# prova contactpoint a lasciarlo solo al dcatapit
              self._add_triple_from_dict(
                 dataset_dict,
                 contact_details,
@@ -430,6 +430,10 @@ class EuropeanDCATAPProfile(RDFProfile):
                 "contact_name",
                 ["maintainer", "author"],
              )
+             if self._get_dataset_value(dataset_dict, "contact_name") or \
+                self._get_dataset_value(dataset_dict, "maintainer") or \
+                self._get_dataset_value(dataset_dict, "author"):
+                has_contact_data = True
 
             if not org_dict.get('email'):
             # Add mail address as URIRef, and ensure it has a mailto: prefix
@@ -442,6 +446,15 @@ class EuropeanDCATAPProfile(RDFProfile):
                 _type=URIRef,
                 value_modifier=self._add_mailto,
              )
+             if self._get_dataset_value(dataset_dict, "contact_email") or \
+                self._get_dataset_value(dataset_dict, "maintainer_email") or \
+                self._get_dataset_value(dataset_dict, "author_email"):
+                has_contact_data = True
+            
+            # Only add the contact point to the dataset if there's actual data
+            if has_contact_data:
+                g.add((contact_details, RDF.type, VCARD.Organization))
+                g.add((dataset_ref, DCAT.contactPoint, contact_details))
 
         # Publisher
         if any(
