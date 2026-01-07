@@ -417,37 +417,37 @@ class RDFSerializer(RDFProcessor):
 
         log.debug('source_uri pre patch %s',source_uri)
         # patch per harvesting per hasPart Catalog
-        if 'r_marche' in dataset_dict.get('holder_identifier'):
+        if 'r_marche' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://dati.regione.marche.it/'
-        elif 'r_emiro' in dataset_dict.get('holder_identifier'):
+        elif 'r_emiro' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://dati.emilia-romagna.it'
             source_catalog_homepage=source_uri
-        elif 'r_toscan' in dataset_dict.get('holder_identifier'):
+        elif 'r_toscan' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://dati.toscana.it'
-        elif 'r_lazio' in dataset_dict.get('holder_identifier'):
+        elif 'r_lazio' in dataset_dict.get('holder_identifier', ''):
             source_uri='http://dati.regione.lazio.it'
-        elif 'r_basili' in dataset_dict.get('holder_identifier'):
+        elif 'r_basili' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://dati.regione.basilicata.it'
-        elif 'aci' in dataset_dict.get('holder_identifier'):
+        elif 'aci' in dataset_dict.get('holder_identifier', ''):
             source_uri='http://lod.aci.it/'
             source_catalog_homepage=source_uri
-        elif 'm_lps' in dataset_dict.get('holder_identifier'):
+        elif 'm_lps' in dataset_dict.get('holder_identifier', ''):
             source_uri='http://dati.lavoro.gov.it/'
-        elif 'c_l219' in dataset_dict.get('holder_identifier'):
+        elif 'c_l219' in dataset_dict.get('holder_identifier', ''):
             source_uri='http://aperto.comune.torino.it/'
-        elif 'cr_campa' in dataset_dict.get('holder_identifier'):
+        elif 'cr_campa' in dataset_dict.get('holder_identifier', ''):
             source_uri='http://opendata-crc.di.unisa.it/'
-        elif '00304260409' in dataset_dict.get('holder_identifier'):
+        elif '00304260409' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://opendata.comune.rimini.it/'
-        elif 'c_a345' in dataset_dict.get('holder_identifier'):
+        elif 'c_a345' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://ckan.opendatalaquila.it/'
-        elif 'uds_ca' in dataset_dict.get('holder_identifier'):
+        elif 'uds_ca' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://data.tdm-project.it'
-        elif 'm_it' in dataset_dict.get('holder_identifier'):
+        elif 'm_it' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://www.interno.gov.it/'
-        elif 'm_inf' in dataset_dict.get('holder_identifier'):
+        elif 'm_inf' in dataset_dict.get('holder_identifier', ''):
             source_uri='https://dati.mit.gov.it/'
-        elif 'uni_ba' in dataset_dict.get('holder_identifier'):
+        elif 'uni_ba' in dataset_dict.get('holder_identifier', ''):
             source_uri='http://opendata.uniba.it/'
         elif 'opendata.maggioli.cloud' in dataset_dict.get('extras', []):
             source_uri='https://www.opendata.maggioli.cloud/'
@@ -511,12 +511,12 @@ class RDFSerializer(RDFProcessor):
                    value = value.replace('/#/#','')
                  if key == 'source_catalog_homepage' and not value.endswith("/#"):
                    value = value + '/'
-                   if 'uni_ba' in dataset_dict.get('holder_identifier'):
+                   if 'uni_ba' in dataset_dict.get('holder_identifier', ''):
                     if key == 'source_catalog_homepage':
                      value = 'http://opendata.uniba.it/#'
-                   if 'cciaan' in dataset_dict.get('holder_identifier'):
+                   if 'cciaan' in dataset_dict.get('holder_identifier', ''):
                     value = 'https://opendata.marche.camcom.it'
-                   if 'aci' in dataset_dict.get('holder_identifier'):
+                   if 'aci' in dataset_dict.get('holder_identifier', ''):
                       dataset_dict['extras'].append({'key': 'source_catalog_modified', 'value': _get_from_extra('dcat_modified')})
                       dataset_dict['extras'].append({'key': 'source_catalog_language', 'value': 'ITA'})
                  if key == 'source_catalog_modified':
@@ -534,8 +534,8 @@ class RDFSerializer(RDFProcessor):
                                  ('url', URIRef, FOAF.homepage,False,),
                                  ('type', URIRef, DCT.type, False,))
             
-            if dataset_dict.get('holder_identifier'):
-             identifier=dataset_dict.get('holder_identifier')
+            if dataset_dict.get('holder_identifier', ''):
+             identifier=dataset_dict.get('holder_identifier', '')
                 
             if dataset_dict.get('holder_name'):
              nameid=dataset_dict.get('holder_name')
@@ -595,21 +595,21 @@ class RDFSerializer(RDFProcessor):
                 for src_key, _type, predicate, required in publisher_sources:
                     val = pub.get(src_key)
                     if src_key == 'type':
-                       if dataset_dict.get('holder_identifier'):
-                          if 'r_' in dataset_dict.get('holder_identifier') or 'p_' in dataset_dict.get('holder_identifier') :
+                       if dataset_dict.get('holder_identifier', ''):
+                          if 'r_' in dataset_dict.get('holder_identifier', '') or 'p_' in dataset_dict.get('holder_identifier', '') :
                            val="http://purl.org/adms/publishertype/RegionalAuthority"
-                          if 'm_' in dataset_dict.get('holder_identifier'):
+                          if 'm_' in dataset_dict.get('holder_identifier', ''):
                            val="http://purl.org/adms/publishertype/NationalAuthority"
-                          if 'c_' in dataset_dict.get('holder_identifier'):
+                          if 'c_' in dataset_dict.get('holder_identifier', ''):
                            val="http://purl.org/adms/publishertype/LocalAuthority"
-                          if 'inail' in dataset_dict.get('holder_identifier') or 'inps' in dataset_dict.get('holder_identifier') or 'agid' in dataset_dict.get('holder_identifier'):
+                          if 'inail' in dataset_dict.get('holder_identifier', '') or 'inps' in dataset_dict.get('holder_identifier', '') or 'agid' in dataset_dict.get('holder_identifier', ''):
                            val="http://purl.org/adms/publishertype/NationalAuthority"
-                          if 'anac' in dataset_dict.get('holder_identifier') or 'ispra' in dataset_dict.get('holder_identifier') or 'pcm' in dataset_dict.get('holder_identifier'):
+                          if 'anac' in dataset_dict.get('holder_identifier', '') or 'ispra' in dataset_dict.get('holder_identifier', '') or 'pcm' in dataset_dict.get('holder_identifier', ''):
                            val="http://purl.org/adms/publishertype/NationalAuthority"                            
                     if src_key == 'url':
                         homepage=_get_from_extra('source_catalog_homepage')
-                        if dataset_dict.get('holder_identifier'):
-                         if 'aci' in dataset_dict.get('holder_identifier'):
+                        if dataset_dict.get('holder_identifier', ''):
+                         if 'aci' in dataset_dict.get('holder_identifier', ''):
                             homepage='http://lod.aci.it/'
                         if homepage is not None:
                          if homepage.endswith("/#"):
