@@ -389,7 +389,8 @@ class RDFSerializer(RDFProcessor):
                     try:
                      self.g.add((next(org_site), DCAT.dataset, dataset_ref))
                     except StopIteration:
-                     log.debug("No more elements in org_site")
+                     log.debug("No more elements in org_site, using catalog_ref")
+                     self.g.add((catalog_ref, DCAT.dataset, dataset_ref))
                 else:
                     self.g.add((cat_ref, DCAT.dataset, dataset_ref))
 
