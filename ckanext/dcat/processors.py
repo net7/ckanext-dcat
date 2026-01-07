@@ -252,7 +252,7 @@ class RDFSerializer(RDFProcessor):
         '''
         uri_value = dataset_dict.get('uri')
         if not uri_value:
-            for extra in dataset_dict.get('extras', []):
+            for extra in (dataset_dict.get('extras') or []):
                 if extra['key'] == 'uri':
                     uri_value = extra['value']
                     break
@@ -409,7 +409,7 @@ class RDFSerializer(RDFProcessor):
             return
 
         def _get_from_extra(key):
-            for ex in dataset_dict.get('extras', []):
+            for ex in (dataset_dict.get('extras') or []):
                 if ex['key'] == key:
                     return ex['value']
 
@@ -449,7 +449,7 @@ class RDFSerializer(RDFProcessor):
             source_uri='https://dati.mit.gov.it/'
         elif 'uni_ba' in (dataset_dict.get('holder_identifier') or ''):
             source_uri='http://opendata.uniba.it/'
-        elif 'opendata.maggioli.cloud' in dataset_dict.get('extras', []):
+        elif 'opendata.maggioli.cloud' in (dataset_dict.get('extras') or []):
             source_uri='https://www.opendata.maggioli.cloud/'
             log.debug('setto source_uri per Maggioli')
 
@@ -499,7 +499,7 @@ class RDFSerializer(RDFProcessor):
                      value='2024-01-01'
                 if key == 'source_catalog_homepage':
                    if not value:
-                    if 'opendata.maggioli.cloud' in dataset_dict.get('extras', []):
+                    if 'opendata.maggioli.cloud' in (dataset_dict.get('extras') or []):
                      value='https://www.opendata.maggioli.cloud/organization/'+dataset_dict['organization']['name']
                      log.debug('setto homepage org Maggioli: %s',value)
 
