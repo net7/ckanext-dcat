@@ -13,6 +13,8 @@ class CustomSslContextHttpAdapter(HTTPAdapter):
             ctx = create_urllib3_context()
             ctx.load_default_certs()
             ctx.options |= 0x4  # ssl.OP_LEGACY_SERVER_CONNECT
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
             self.poolmanager = urllib3.PoolManager(ssl_context=ctx)
 
 
