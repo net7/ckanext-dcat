@@ -110,12 +110,12 @@ class EuropeanDCATAPProfile(RDFProfile):
             value = self._object_value(dataset_ref, predicate)
             if value:
                 if dataset_dict.get('holder_name'):
-                  if 'BDAP' in dataset_dict.get('holder_name'):
+                  if 'BDAP' in (dataset_dict.get('holder_name') or ''):
                    dataset_dict.pop('frequency', None)
                    dataset_dict['frequency']='UNKNOWN'
                    log.debug('Patch Freq per BDAP')
                 if dataset_dict.get('holder_identifier'):
-                 if 'r_lazio' in dataset_dict.get('holder_identifier'):
+                 if 'r_lazio' in (dataset_dict.get('holder_identifier') or ''):
                   dataset_dict.pop('frequency', None)
                   dataset_dict['frequency']='UNKNOWN'
                 if key=="identifier":
@@ -344,7 +344,7 @@ class EuropeanDCATAPProfile(RDFProfile):
          else:
                self._add_triples_from_dict(dataset_dict, dataset_ref, items)
         if dataset_dict.get('identifier'):
-           if ' ' in dataset_dict.get('identifier'):
+           if ' ' in (dataset_dict.get('identifier') or ''):
               identifier='';
               identifier=re.sub(r'[^a-zA-Z0-9:_]',r'',dataset_dict["identifier"])
               identifier=re.sub('\W+','', dataset_dict["identifier"])
@@ -549,60 +549,60 @@ class EuropeanDCATAPProfile(RDFProfile):
 
            distribution = CleanedURIRef(resource_uri(resource_dict))
            if dataset_dict.get('holder_identifier'):
-            if 'cmna' in dataset_dict.get('holder_identifier'):
+            if 'cmna' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"https://dati.cittametropolitana.na.it/")
               distribution=CleanedURIRef(distribution)
-            if '00514490010' in dataset_dict.get('holder_identifier'):
+            if '00514490010' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"http://aperto.comune.torino.it/")
               distribution=CleanedURIRef(distribution)
-            if 'r_lazio' in dataset_dict.get('holder_identifier'):
+            if 'r_lazio' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"http://dati.lazio.it/catalog/")
               distribution=CleanedURIRef(distribution)
-            if 'r_basili' in dataset_dict.get('holder_identifier'):
+            if 'r_basili' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"https://dati.regione.basilicata.it/catalog/")
               distribution=CleanedURIRef(distribution)
-            if 'r_marche' in dataset_dict.get('holder_identifier'):
+            if 'r_marche' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"https://dati.regione.marche.it/")
               distribution=CleanedURIRef(distribution)
-            if 'aci' in dataset_dict.get('holder_identifier'):
+            if 'aci' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"http://lod.aci.it/")
               distribution=CleanedURIRef(distribution)
                # log.info('resource_distribution_it %s',distribution)
-            if 'r_emiro' in dataset_dict.get('holder_identifier'):
+            if 'r_emiro' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace("dati.comune.fe.it","https://dati.comune.fe.it")
               distribution = distribution.replace(PREF_LANDING,"https://dati.emilia-romagna.it/")
               distribution=CleanedURIRef(distribution)
-            if 'cr_campa' in dataset_dict.get('holder_identifier'):
+            if 'cr_campa' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"http://opendata-crc.di.unisa.it/")
               distribution=CleanedURIRef(distribution)
                # log.info('resource_distribution_it %s',distribution)
-            if 'r_toscan' in dataset_dict.get('holder_identifier'):
+            if 'r_toscan' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"https://dati.toscana.it/")
               distribution=CleanedURIRef(distribution)
-            if 'm_lps' in dataset_dict.get('holder_identifier'):
+            if 'm_lps' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"http://dati.lavoro.gov.it/")
               distribution=CleanedURIRef(distribution)
                # log.info('resource_distribution_it %s',distribution)
-            if '00304260409' in dataset_dict.get('holder_identifier'):
+            if '00304260409' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"https://opendata.comune.rimini.it/")
               distribution=CleanedURIRef(distribution)
-            if 'c_a345' in dataset_dict.get('holder_identifier'):
+            if 'c_a345' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"http://ckan.opendatalaquila.it")
               distribution=CleanedURIRef(distribution)
-            if 'uds_ca' in dataset_dict.get('holder_identifier'):
+            if 'uds_ca' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"https://data.tdm-project.it")
               distribution=CleanedURIRef(distribution)
-            if 'm_it' in dataset_dict.get('holder_identifier'):
+            if 'm_it' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"https://www.interno.gov.it/")
               distribution=CleanedURIRef(distribution)
-            if 'm_inf' in dataset_dict.get('holder_identifier'):
+            if 'm_inf' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"https://dati.mit.gov.it")
               distribution=CleanedURIRef(distribution)
 
- #            if 'piersoft' in dataset_dict.get('holder_identifier'):
+ #            if 'piersoft' in (dataset_dict.get('holder_identifier') or ''):
   #             distribution = distribution.replace(PREF_LANDING,"https://www.piersoft.it")
    #            distribution=CleanedURIRef(distribution)
-            if 'c_e506' in dataset_dict.get('holder_identifier'):
+            if 'c_e506' in (dataset_dict.get('holder_identifier') or ''):
               distribution = distribution.replace(PREF_LANDING,"http://dati.comune.lecce.it")
               distribution=CleanedURIRef(distribution)
             if distribution is not None:
@@ -633,14 +633,14 @@ class EuropeanDCATAPProfile(RDFProfile):
              if resource_dict.get('url'):
               resource_dict['access_url']=resource_dict['url']
             if resource_dict.get('access_url'):
-             if 'view-dataset' in resource_dict.get('access_url'):
+             if 'view-dataset' in (resource_dict.get('access_url') or ''):
                resource_dict['access_url']=resource_dict['url']
             if resource_dict.get('license'):
              resource_dict['license']=resource_dict['license'].replace('https://w3id.org/italia/controlled-vocabulary/licences/C1_Unknown','http://creativecommons.org/licenses/by/4.0/')
              resource_dict['license']=resource_dict['license'].replace('https://w3id.org/italia/controlled-vocabulary/licences/B11_CCBYNC40','http://creativecommons.org/licenses/by/4.0/')
-            if 'c_g273' in dataset_dict.get('holder_identifier'):
+            if 'c_g273' in (dataset_dict.get('holder_identifier') or ''):
               resource_dict['access_url']=resource_dict['download_url']
-            if 'inps' in dataset_dict.get('holder_identifier'):
+            if 'inps' in (dataset_dict.get('holder_identifier') or ''):
               resource_dict['access_url']=resource_dict['download_url']
             if not resource_dict.get('rights'):
                 resource_dict['rights']="http://publications.europa.eu/resource/authority/access-right/PUBLIC"
@@ -666,85 +666,85 @@ class EuropeanDCATAPProfile(RDFProfile):
                 )
 
             # Format
-            if 'CSV' in resource_dict.get('format'):
+            if 'CSV' in (resource_dict.get('format') or ''):
                  resource_dict.pop('format', None)
                  resource_dict['format']='CSV'
-            if 'csv' in resource_dict.get('format'):
+            if 'csv' in (resource_dict.get('format') or ''):
                  resource_dict.pop('format', None)
                  resource_dict['format']='CSV'
-            if 'link' in resource_dict.get('format'):
+            if 'link' in (resource_dict.get('format') or ''):
                  resource_dict.pop('format', None)
                  resource_dict['format']='HTML_SIMPL'
-            if 'ZIP' in resource_dict.get('format'):
+            if 'ZIP' in (resource_dict.get('format') or ''):
                  resource_dict.pop('format', None)
                  resource_dict['format']='ZIP'
-            if 'pdf' in resource_dict.get('format'):
+            if 'pdf' in (resource_dict.get('format') or ''):
                  resource_dict.pop('format', None)
                  resource_dict['format']='PDF'
-            if 'PDF' in resource_dict.get('format'):
+            if 'PDF' in (resource_dict.get('format') or ''):
                  resource_dict.pop('format', None)
                  resource_dict['format']='PDF'
-            if 'doc' in resource_dict.get('format'):
+            if 'doc' in (resource_dict.get('format') or ''):
                  resource_dict.pop('format', None)
                  resource_dict['format']='DOC'
-            if 'GEOJSON' in resource_dict.get('format'):
+            if 'GEOJSON' in (resource_dict.get('format') or ''):
                  resource_dict.pop('format', None)
                  resource_dict['format']='GEOJSON'
-            if 'ov2' in resource_dict.get('format'):
+            if 'ov2' in (resource_dict.get('format') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='BIN'    
-            if 'OV2' in resource_dict.get('format'):
+            if 'OV2' in (resource_dict.get('format') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='BIN'                 
-            if 'turtle' in resource_dict.get('url'):
+            if 'turtle' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='RDF_TURTLE'     
-            if 'fgb' in resource_dict.get('url'):
+            if 'fgb' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='SHP'
                 
-            if 'OP_DATPRO' in resource_dict.get('format') or 'ARC' in resource_dict.get('format'):
+            if 'OP_DATPRO' in (resource_dict.get('format') or '') or 'ARC' in (resource_dict.get('format') or ''):
                 if resource_dict.get('url'):
-                 if 'rdf' in resource_dict.get('url'):
+                 if 'rdf' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='RDF'
-                 if 'sparql' in resource_dict.get('url'):
+                 if 'sparql' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='SPARQLQ'
-                 if 'xlsx' in resource_dict.get('url'):
+                 if 'xlsx' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='XLSX'
-                 if 'zip' in resource_dict.get('url'):
+                 if 'zip' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='ZIP'
-                 if 'ttl' in resource_dict.get('url'):
+                 if 'ttl' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='RDF_TURTLE'
-                 if 'xsd' in resource_dict.get('url'):
+                 if 'xsd' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='XML'
-                 if 'json' in resource_dict.get('url'):
+                 if 'json' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='JSON'
-                 if 'ov2' in resource_dict.get('url'):
+                 if 'ov2' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='BIN'                     
-                 if 'turtle' in resource_dict.get('url'):
+                 if 'turtle' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='RDF_TURTLE'     
-                 if 'fgb' in resource_dict.get('url'):
+                 if 'fgb' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='SHP'
-                 if 'shp' in resource_dict.get('url'):
+                 if 'shp' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='SHP'
-                 if 'kml' in resource_dict.get('url'):
+                 if 'kml' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='KML'
-                 if 'umap.openstreetmap' in resource_dict.get('url'):
+                 if 'umap.openstreetmap' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='HTML_SIMPL'
-                 if 'infogram.com' in resource_dict.get('url'):
+                 if 'infogram.com' in (resource_dict.get('url') or ''):
                   resource_dict.pop('format', None)       
                   resource_dict['format']='HTML_SIMPL'
 
@@ -860,7 +860,7 @@ class EuropeanDCATAPProfile(RDFProfile):
 
             # Checksum
             if resource_dict.get("hash"):
-              if not 'r_emiro' in dataset_dict.get('holder_identifier'):
+              if not 'r_emiro' in (dataset_dict.get('holder_identifier') or ''):
                 checksum = BNode()
                 g.add((checksum, RDF.type, SPDX.Checksum))
                 g.add(
