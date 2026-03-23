@@ -763,47 +763,48 @@ class EuropeanDCATAPProfile(RDFProfile):
                     # output format value as dcat:mediaType instead of dct:format
                     mimetype = fmt
                     fmt = None
-                if 'CSV' in fmt:
-                    mimetype = 'text/csv'
-                if 'JSON' in fmt:
-                    mimetype = 'application/json'
-                if 'ZIP' in fmt:
-                    mimetype = 'application/zip'
-                if 'XML' in fmt:
-                    mimetype = 'text/xml'
-                if 'RDF' in fmt:
-                    mimetype = 'application/rdf+xml'
-                if 'SPARQL' in fmt:
-                    mimetype = 'application/sparql-query'
-                if 'XLS' in fmt:
-                    mimetype = 'application/vnd.ms-excel'
-                if 'GEOJSON' in fmt:
-                    mimetype = 'application/geo+json'
-                if 'PARQUET' in fmt:
-                    mimetype = 'application/vnd.apache.parquet'
-                #parquet è application/vnd.apache.parquet ma dataEU  non lo riconosce
-                if 'SHP' in fmt:
-                    mimetype = 'application/zip'
-                if 'KML' in fmt:
-                    mimetype = 'application/vnd.google-earth.kml+xml'
-                if 'RDF_TURTLE' in fmt:
-                    mimetype = 'text/turtle'
-                if 'GPX' in fmt:
-                    mimetype = 'application/vnd.gpxsee.map+xml'
-                if 'N3' in fmt:
-                    mimetype = 'text/n3'
-                if 'BIN' in fmt:
-                    mimetype = 'text/csv'
-                if 'TSV' in fmt:
-                    mimetype = 'text/tab-separated-values'
-                if 'HTML' in fmt:
-                    mimetype = 'text/html'
-                if 'ODS' in fmt:
-                    mimetype = 'application/vnd.oasis.opendocument.spreadsheet'
-                if 'PDF' in fmt:
-                    mimetype = 'application/pdf'
-                if 'GPKG' in fmt:
-                    mimetype = 'application/vnd.gentoo.gpkg'
+                else:
+                    if 'CSV' in fmt:
+                        mimetype = 'text/csv'
+                    if 'JSON' in fmt:
+                        mimetype = 'application/json'
+                    if 'ZIP' in fmt:
+                        mimetype = 'application/zip'
+                    if 'XML' in fmt:
+                        mimetype = 'text/xml'
+                    if 'RDF' in fmt:
+                        mimetype = 'application/rdf+xml'
+                    if 'SPARQL' in fmt:
+                        mimetype = 'application/sparql-query'
+                    if 'XLS' in fmt:
+                        mimetype = 'application/vnd.ms-excel'
+                    if 'GEOJSON' in fmt:
+                        mimetype = 'application/geo+json'
+                    if 'PARQUET' in fmt:
+                        mimetype = 'application/vnd.apache.parquet'
+                    #parquet è application/vnd.apache.parquet ma dataEU  non lo riconosce
+                    if 'SHP' in fmt:
+                        mimetype = 'application/zip'
+                    if 'KML' in fmt:
+                        mimetype = 'application/vnd.google-earth.kml+xml'
+                    if 'RDF_TURTLE' in fmt:
+                        mimetype = 'text/turtle'
+                    if 'GPX' in fmt:
+                        mimetype = 'application/vnd.gpxsee.map+xml'
+                    if 'N3' in fmt:
+                        mimetype = 'text/n3'
+                    if 'BIN' in fmt:
+                        mimetype = 'text/csv'
+                    if 'TSV' in fmt:
+                        mimetype = 'text/tab-separated-values'
+                    if 'HTML' in fmt:
+                        mimetype = 'text/html'
+                    if 'ODS' in fmt:
+                        mimetype = 'application/vnd.oasis.opendocument.spreadsheet'
+                    if 'PDF' in fmt:
+                        mimetype = 'application/pdf'
+                    if 'GPKG' in fmt:
+                        mimetype = 'application/vnd.gentoo.gpkg'
   #                else:
                     # Use dct:format
      #                 mimetype = None
